@@ -71,7 +71,7 @@ return (
     {selectedOption.length > 0 ? scriptResult[0] : "Price 1"} - {" "}
       <span style={{ fontWeight: "bold" }}>
         {" "}
-        {scriptResult.length > 0 ? scriptResult[3] / scriptResult[2] : ""}
+        {scriptResult.length > 0 ? scriptResult[4] : ""}
         {" "}
         {scriptResult.length > 0 ? scriptResult[1] : ""}
       </span>
@@ -80,7 +80,7 @@ return (
     {selectedOption.length > 0 ? scriptResult[1] : "Price 1"} - {" "}
       <span style={{ fontWeight: "bold" }}>
         {" "}
-        {scriptResult.length > 0 ? scriptResult[2] / scriptResult[3] : ""}
+        {scriptResult.length > 0 ? scriptResult[5] : ""}
         {" "}
         {scriptResult.length > 0 ? scriptResult[0] : ""}
       </span>

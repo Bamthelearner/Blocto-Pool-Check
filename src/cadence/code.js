@@ -25,31 +25,49 @@ pub fun main(Addr: String) : [AnyStruct] {
       let pool = BltUsdtSwapPair.getPoolAmounts()
       let token1Amount  = pool.token1Amount
       let token2Amount  = pool.token2Amount
-      return ["BLT","tUSDT",token1Amount, token2Amount]
+      let token1Price = BltUsdtSwapPair.quoteSwapExactToken1ForToken2(amount: 1.0)
+      let token2Price = BltUsdtSwapPair.quoteSwapExactToken2ForToken1(amount: 1.0)
+      return ["BLT","tUSDT",token1Amount, token2Amount, token1Price, token2Price]
 
     case "FlowSwapPair" :
       let pool = FlowSwapPair.getPoolAmounts()
       let token1Amount  = pool.token1Amount
       let token2Amount  = pool.token2Amount
-      return ["FLOW","tUSDT",token1Amount, token2Amount]
+      let token1Price = FlowSwapPair.quoteSwapExactToken1ForToken2(amount: 1.0)
+      let token2Price = FlowSwapPair.quoteSwapExactToken2ForToken1(amount: 1.0)
+      return ["FLOW","tUSDT",token1Amount, token2Amount, token1Price, token2Price]
       
     case "FusdUsdtSwapPair" :
       let pool = FusdUsdtSwapPair.getPoolAmounts()
       let token1Amount  = pool.token1Amount
       let token2Amount  = pool.token2Amount
-      return ["FUSD","tUSDT",token1Amount, token2Amount]
+      let token1Price = FusdUsdtSwapPair.quoteSwapExactToken1ForToken2(amount: 1.0)
+      let token2Price = FusdUsdtSwapPair.quoteSwapExactToken2ForToken1(amount: 1.0)
+      return ["FUSD","tUSDT",token1Amount, token2Amount, token1Price, token2Price]
       
     case "RevvFlowSwapPair" :
       let pool = RevvFlowSwapPair.getPoolAmounts()
       let token1Amount  = pool.token1Amount
       let token2Amount  = pool.token2Amount
-      return ["REVV","FLOW",token1Amount, token2Amount]
+      let token1Price = RevvFlowSwapPair.quoteSwapExactToken1ForToken2(amount: 1.0)
+      let token2Price = RevvFlowSwapPair.quoteSwapExactToken2ForToken1(amount: 1.0)
+      return ["REVV","FLOW",token1Amount, token2Amount, token1Price, token2Price]
        
     case "UsdcUsdtSwapPair" :
       let pool = UsdcUsdtSwapPair.getPoolAmounts()
       let token1Amount  = pool.token1Amount
       let token2Amount  = pool.token2Amount
-      return ["USDC","tUSDT",token1Amount, token2Amount]
+      if token1Amount != 0.0 {
+        let token1Price = UsdcUsdtSwapPair.quoteSwapExactToken1ForToken2(amount: 1.0)
+        let token2Price = UsdcUsdtSwapPair.quoteSwapExactToken2ForToken1(amount: 1.0)
+        return ["USDC","tUSDT",token1Amount, token2Amount, token1Price, token2Price]
+      } else {
+        let token1Price = 0
+        let token2Price = 0
+        return ["USDC","tUSDT",token1Amount, token2Amount, token1Price, token2Price]
+      }
+
+      //return ["USDC","tUSDT",token1Amount, token2Amount, 0, 0]
       
   }
     return []
